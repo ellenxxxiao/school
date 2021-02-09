@@ -13,7 +13,7 @@ public class SubjectService {
     @Autowired
     private SubjectMapper subjectMapper;
 
-    public Subject getSubjectByTeacherId(int teacherId){
+    public List<Subject> getSubjectByTeacherId(int teacherId){
         return subjectMapper.getSubjectsByTeacherId(teacherId);
     }
 

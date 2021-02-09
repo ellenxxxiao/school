@@ -3,27 +3,39 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ellens.school.dao.SubjectMapper">
 
-    <!-- 结果映射表 -->
+    <!-- 结果映射表1 -->
     <resultMap id="subjectMap" type="com.ellens.school.model.Subject">
-        <id property="subid" column="sub_id"/>
-        <result property="subname" column="sub_name"/>
-        <result property="subdescription" column="sub_description"/>
+        <id property="subId" column="sub_id"/>
+        <result property="subName" column="sub_name"/>
+        <result property="subDescription" column="sub_description"/>
         <association property="teacher" javaType="com.ellens.school.model.Teacher">
-            <id property="id" column="teacher_id"/>
-            <result property="name" column="teacher_name"/>
+            <id property="teacherId" column="id"/>
+            <result property="teacherName" column="teacher_name"/>
         </association>
     </resultMap>
+    
+    <!-- 结果映射表2 -->
+    <resultMap id="subjectResultMap" type="com.ellens.school.model.Subject">
+        <id property="subId" column="sub_id"/>
+        <result property="subName" column="sub_name"/>
+        <result property="subDescription" column="sub_description"/>
+    </resultMap>
+
 
     <!-- 查询逻辑 -->
     <!-- 根据teacher id查询subjects -->
-    <select id="getSubjectsByTeacherId" parameterType="integer" resultType="com.ellens.school.model.Subject">
-        SELECT * FROM subject WHERE teacher_id = #{teacherId}
+    <select id="getSubjectsByTeacherId" parameterType="integer" resultMap="subjectResultMap">
+        SELECT sub_id,
+               sub_name,
+               sub_description
+        FROM subject
+        WHERE teacher_id = #{id}
     </select>
 
     <!-- 根据subject id 查询subject，关联teacher表 -->
     <select id="getSubjectById" parameterType="integer" resultMap="subjectMap">
-        SELECT * FROM subject s, teacher t
-        WHERE s.teacher_id = t.teacher_id
+        SELECT sub_id, sub_name, sub_description, id, teacher_name FROM subject s join teacher t
+        WHERE s.teacher_id = t.id
         AND s.sub_id = #{subjectId}
     </select>
 

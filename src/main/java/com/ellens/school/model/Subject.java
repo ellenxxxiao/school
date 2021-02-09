@@ -7,9 +7,10 @@ import java.io.Serializable;
 @Data
 public class Subject implements Serializable {
 
-    private int subid;
-    private String subname;
-    private String subdescription;
+    private int subId;
+    private String subName;
+    private String subDescription;
+//    private int teacherId;
     private Teacher teacher;
 
 }

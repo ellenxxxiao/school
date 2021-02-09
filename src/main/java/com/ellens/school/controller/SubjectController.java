@@ -7,7 +7,9 @@ import com.ellens.school.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.ws.rs.PathParam;
+import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/school")
 public class SubjectController {
@@ -28,8 +30,8 @@ public class SubjectController {
         return subjectService.getSubjectById(Integer.parseInt(id));
     }
 
-    @PostMapping("/subTeacher/{id}")
-    public Subject getSubjectByTeacherId(@PathVariable String id) {
+    @GetMapping("/subTeacher/{id}")
+    public List<Subject> getSubjectByTeacherId(@PathVariable String id) {
         return subjectService.getSubjectByTeacherId(Integer.parseInt(id));
     }
 }

@@ -5,24 +5,23 @@
 
     <!-- 结果映射表 -->
     <resultMap id="teacherMap" type="com.ellens.school.model.Teacher">
-        <id property="id" column="teacher_id"/>
-        <result property="name" column="teacher_name"/>
+        <id property="teacherId" column="id"/>
+        <result property="teacherName" column="teacher_name"/>
         <collection property="subjects"
                     javaType="ArrayList"
-                    column="teacher_id"
                     ofType="com.ellens.school.model.Subject"
-                    fetchType="lazy"
-                    select="com.ellens.school.dao.SubjectMapper.getSubjectByTeacherId">
-            <id property="subid" column="sub_id"/>
-            <result property="subname" column="sub_name"/>
-            <result property="subdescription" column="sub_description"/>
+                    column="id"
+                    select="com.ellens.school.dao.SubjectMapper.getSubjectsByTeacherId">
+<!--            <id property="subId" column="subId"/>-->
+<!--            <result property="subName" column="subName"/>-->
+<!--            <result property="subDescription" column="subDescription"/>-->
         </collection>
     </resultMap>
 
     <!-- 查询逻辑 -->
     <!-- 根据teacher id 查询teacher，附带subject集合 -->
     <select id="getTeacherById" parameterType="integer" resultMap="teacherMap">
-        SELECT * FROM teacher where teacher_id = #{teacherId}
+        SELECT id, teacher_name FROM teacher where id = #{teacherId}
     </select>
 
 

@@ -17,7 +17,7 @@ public interface SubjectMapper {
 //            //下面的property是Subject的attribute，column是pass给one里方法的参数。
 //            @Result(column = "teacher_id", one = @One(select="com.ellens.school.dao.TeacherDao.getTeacherById" ), property = "teacher")
 //            })
-    Subject getSubjectsByTeacherId(int teacherId);
+    List<Subject> getSubjectsByTeacherId(int teacherId);
 
     Subject getSubjectById(int subjectId);
 

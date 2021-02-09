@@ -10,9 +10,10 @@ spring:
   jackson:
     default-property-inclusion: non_null
 
+
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  configuration:
-    lazy-loading-enabled: true
-    aggressive-lazy-loading: false
-    map-underscore-to-camel-case: true
+#  configuration:
+#    lazy-loading-enabled: true
+#    aggressive-lazy-loading: false
+#  map-underscore-to-camel-case: true

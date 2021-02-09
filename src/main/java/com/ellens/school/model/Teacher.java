@@ -7,8 +7,8 @@ import java.util.List;
 @Data
 public class Teacher {
 
-    private int id;
-    private String name;
+    private int teacherId;
+    private String teacherName;
     private List<Subject> subjects;
 
 }
